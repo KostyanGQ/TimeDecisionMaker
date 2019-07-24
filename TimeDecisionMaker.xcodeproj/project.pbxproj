@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		748F59A42270681B00B88B7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748F59A32270681B00B88B7D /* AppDelegate.swift */; };
-		748F59A62270681B00B88B7D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748F59A52270681B00B88B7D /* ViewController.swift */; };
+		748F59A62270681B00B88B7D /* DMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748F59A52270681B00B88B7D /* DMViewController.swift */; };
 		748F59A92270681B00B88B7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 748F59A72270681B00B88B7D /* Main.storyboard */; };
 		748F59AB2270681D00B88B7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 748F59AA2270681D00B88B7D /* Assets.xcassets */; };
 		748F59AE2270681D00B88B7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 748F59AC2270681D00B88B7D /* LaunchScreen.storyboard */; };
@@ -19,6 +19,12 @@
 		748F59CB22706C6600B88B7D /* A.ics in Resources */ = {isa = PBXBuildFile; fileRef = 748F59C922706C6600B88B7D /* A.ics */; };
 		748F59CE22706EB300B88B7D /* B.ics in Resources */ = {isa = PBXBuildFile; fileRef = 748F59CD22706EB300B88B7D /* B.ics */; };
 		748F59CF22706EB300B88B7D /* B.ics in Resources */ = {isa = PBXBuildFile; fileRef = 748F59CD22706EB300B88B7D /* B.ics */; };
+		BBFD3AA722E5D1D9005AE976 /* DMVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFD3AA622E5D1D9005AE976 /* DMVCollectionViewCell.swift */; };
+		BBFD3AAB22E5EAC0005AE976 /* DMHourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBFD3AAA22E5EAC0005AE976 /* DMHourView.xib */; };
+		BBFD3AAE22E5EBD4005AE976 /* DMHourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFD3AAD22E5EBD4005AE976 /* DMHourView.swift */; };
+		BBFD3AB022E5EF0A005AE976 /* DMCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFD3AAF22E5EF0A005AE976 /* DMCollectionViewLayout.swift */; };
+		BBFD3AB322E600B5005AE976 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFD3AB222E600B5005AE976 /* DateExtension.swift */; };
+		BBFD3AB522E61432005AE976 /* DMCurrentTIme.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBFD3AB422E61432005AE976 /* DMCurrentTIme.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +40,7 @@
 /* Begin PBXFileReference section */
 		748F59A02270681B00B88B7D /* TimeDecisionMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeDecisionMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		748F59A32270681B00B88B7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		748F59A52270681B00B88B7D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		748F59A52270681B00B88B7D /* DMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMViewController.swift; sourceTree = "<group>"; };
 		748F59A82270681B00B88B7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		748F59AA2270681D00B88B7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		748F59AD2270681D00B88B7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -45,6 +51,12 @@
 		748F59C62270687C00B88B7D /* RDTimeDecisionMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDTimeDecisionMaker.swift; sourceTree = "<group>"; };
 		748F59C922706C6600B88B7D /* A.ics */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A.ics; sourceTree = "<group>"; };
 		748F59CD22706EB300B88B7D /* B.ics */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B.ics; sourceTree = "<group>"; };
+		BBFD3AA622E5D1D9005AE976 /* DMVCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMVCollectionViewCell.swift; sourceTree = "<group>"; };
+		BBFD3AAA22E5EAC0005AE976 /* DMHourView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DMHourView.xib; sourceTree = "<group>"; };
+		BBFD3AAD22E5EBD4005AE976 /* DMHourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMHourView.swift; sourceTree = "<group>"; };
+		BBFD3AAF22E5EF0A005AE976 /* DMCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMCollectionViewLayout.swift; sourceTree = "<group>"; };
+		BBFD3AB222E600B5005AE976 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		BBFD3AB422E61432005AE976 /* DMCurrentTIme.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DMCurrentTIme.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,11 +98,11 @@
 		748F59A22270681B00B88B7D /* TimeDecisionMaker */ = {
 			isa = PBXGroup;
 			children = (
+				BBFD3AB122E60061005AE976 /* Extansion */,
 				748F59CC22706E9400B88B7D /* Appointments */,
 				748F59A32270681B00B88B7D /* AppDelegate.swift */,
 				748F59C62270687C00B88B7D /* RDTimeDecisionMaker.swift */,
 				748F59C42270685A00B88B7D /* ViewControllers */,
-				748F59C32270684E00B88B7D /* Storyboards */,
 				748F59C52270686400B88B7D /* Resources */,
 			);
 			path = TimeDecisionMaker;
@@ -109,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				748F59A72270681B00B88B7D /* Main.storyboard */,
+				BBFD3AB422E61432005AE976 /* DMCurrentTIme.xib */,
 				748F59AC2270681D00B88B7D /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -117,7 +130,11 @@
 		748F59C42270685A00B88B7D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				748F59A52270681B00B88B7D /* ViewController.swift */,
+				748F59C32270684E00B88B7D /* Storyboards */,
+				BBFD3AAC22E5EBB9005AE976 /* DMHourView */,
+				748F59A52270681B00B88B7D /* DMViewController.swift */,
+				BBFD3AA622E5D1D9005AE976 /* DMVCollectionViewCell.swift */,
+				BBFD3AAF22E5EF0A005AE976 /* DMCollectionViewLayout.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -138,6 +155,23 @@
 				748F59CD22706EB300B88B7D /* B.ics */,
 			);
 			path = Appointments;
+			sourceTree = "<group>";
+		};
+		BBFD3AAC22E5EBB9005AE976 /* DMHourView */ = {
+			isa = PBXGroup;
+			children = (
+				BBFD3AAD22E5EBD4005AE976 /* DMHourView.swift */,
+				BBFD3AAA22E5EAC0005AE976 /* DMHourView.xib */,
+			);
+			path = DMHourView;
+			sourceTree = "<group>";
+		};
+		BBFD3AB122E60061005AE976 /* Extansion */ = {
+			isa = PBXGroup;
+			children = (
+				BBFD3AB222E600B5005AE976 /* DateExtension.swift */,
+			);
+			path = Extansion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,9 +255,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				748F59AE2270681D00B88B7D /* LaunchScreen.storyboard in Resources */,
+				BBFD3AAB22E5EAC0005AE976 /* DMHourView.xib in Resources */,
 				748F59CE22706EB300B88B7D /* B.ics in Resources */,
 				748F59AB2270681D00B88B7D /* Assets.xcassets in Resources */,
 				748F59A92270681B00B88B7D /* Main.storyboard in Resources */,
+				BBFD3AB522E61432005AE976 /* DMCurrentTIme.xib in Resources */,
 				748F59CA22706C6600B88B7D /* A.ics in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,8 +280,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBFD3AAE22E5EBD4005AE976 /* DMHourView.swift in Sources */,
+				BBFD3AB322E600B5005AE976 /* DateExtension.swift in Sources */,
+				BBFD3AB022E5EF0A005AE976 /* DMCollectionViewLayout.swift in Sources */,
+				BBFD3AA722E5D1D9005AE976 /* DMVCollectionViewCell.swift in Sources */,
 				748F59C72270687C00B88B7D /* RDTimeDecisionMaker.swift in Sources */,
-				748F59A62270681B00B88B7D /* ViewController.swift in Sources */,
+				748F59A62270681B00B88B7D /* DMViewController.swift in Sources */,
 				748F59A42270681B00B88B7D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2H59L9S37H;
 				INFOPLIST_FILE = TimeDecisionMaker/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -427,6 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2H59L9S37H;
 				INFOPLIST_FILE = TimeDecisionMaker/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
