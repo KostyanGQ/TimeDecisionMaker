@@ -21,6 +21,10 @@
 		BB2EC88123353DF60029C805 /* MeetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB2EC88023353DF60029C805 /* MeetViewController.storyboard */; };
 		BB2EC883233555640029C805 /* MeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2EC882233555640029C805 /* MeetViewController.swift */; };
 		BB2EC885233555760029C805 /* MeetCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2EC884233555760029C805 /* MeetCellViewController.swift */; };
+		BB2EC888233556BA0029C805 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB2EC887233556BA0029C805 /* DetailViewController.storyboard */; };
+		BB2EC88A23355A1E0029C805 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2EC88923355A1E0029C805 /* DetailViewController.swift */; };
+		BB2EC88D23355B720029C805 /* NewMeetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB2EC88C23355B720029C805 /* NewMeetViewController.storyboard */; };
+		BB2EC88F23355E510029C805 /* NewMeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2EC88E23355E510029C805 /* NewMeetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		BB2EC88023353DF60029C805 /* MeetViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MeetViewController.storyboard; sourceTree = "<group>"; };
 		BB2EC882233555640029C805 /* MeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetViewController.swift; sourceTree = "<group>"; };
 		BB2EC884233555760029C805 /* MeetCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCellViewController.swift; sourceTree = "<group>"; };
+		BB2EC887233556BA0029C805 /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
+		BB2EC88923355A1E0029C805 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BB2EC88C23355B720029C805 /* NewMeetViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewMeetViewController.storyboard; sourceTree = "<group>"; };
+		BB2EC88E23355E510029C805 /* NewMeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,8 @@
 		748F59C42270685A00B88B7D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BB2EC88B23355A320029C805 /* NewMeetViewController */,
+				BB2EC8862335569C0029C805 /* DetailViewController */,
 				BB2EC87F23353DBD0029C805 /* MeetViewController */,
 				BB2EC87A23353CA90029C805 /* ChooseViewController */,
 			);
@@ -152,6 +162,24 @@
 				BB2EC884233555760029C805 /* MeetCellViewController.swift */,
 			);
 			path = MeetViewController;
+			sourceTree = "<group>";
+		};
+		BB2EC8862335569C0029C805 /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BB2EC887233556BA0029C805 /* DetailViewController.storyboard */,
+				BB2EC88923355A1E0029C805 /* DetailViewController.swift */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
+		BB2EC88B23355A320029C805 /* NewMeetViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BB2EC88C23355B720029C805 /* NewMeetViewController.storyboard */,
+				BB2EC88E23355E510029C805 /* NewMeetViewController.swift */,
+			);
+			path = NewMeetViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +264,9 @@
 			files = (
 				748F59CE22706EB300B88B7D /* B.ics in Resources */,
 				748F59AB2270681D00B88B7D /* Assets.xcassets in Resources */,
+				BB2EC888233556BA0029C805 /* DetailViewController.storyboard in Resources */,
 				BB2EC88123353DF60029C805 /* MeetViewController.storyboard in Resources */,
+				BB2EC88D23355B720029C805 /* NewMeetViewController.storyboard in Resources */,
 				BB2EC87C23353CDE0029C805 /* ChooseViewController.storyboard in Resources */,
 				748F59CA22706C6600B88B7D /* A.ics in Resources */,
 			);
@@ -261,8 +291,10 @@
 				BB2EC883233555640029C805 /* MeetViewController.swift in Sources */,
 				748F59C72270687C00B88B7D /* RDTimeDecisionMaker.swift in Sources */,
 				BB2EC87E23353D340029C805 /* ChooseViewController.swift in Sources */,
+				BB2EC88A23355A1E0029C805 /* DetailViewController.swift in Sources */,
 				748F59A42270681B00B88B7D /* AppDelegate.swift in Sources */,
 				BB2EC885233555760029C805 /* MeetCellViewController.swift in Sources */,
+				BB2EC88F23355E510029C805 /* NewMeetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
