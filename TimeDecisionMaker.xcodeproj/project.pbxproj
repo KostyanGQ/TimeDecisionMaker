@@ -25,6 +25,12 @@
 		BB2EC88A23355A1E0029C805 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2EC88923355A1E0029C805 /* DetailViewController.swift */; };
 		BB2EC88D23355B720029C805 /* NewMeetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB2EC88C23355B720029C805 /* NewMeetViewController.storyboard */; };
 		BB2EC88F23355E510029C805 /* NewMeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2EC88E23355E510029C805 /* NewMeetViewController.swift */; };
+		BB67EBEF23396FCF0058D272 /* RootWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EBEE23396FCF0058D272 /* RootWireFrame.swift */; };
+		BB67EBF1233976A00058D272 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EBF0233976A00058D272 /* NavigationViewController.swift */; };
+		BB67EBF4233A4B980058D272 /* Meet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EBF3233A4B980058D272 /* Meet.swift */; };
+		BB67EBF6233A4BAD0058D272 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EBF5233A4BAD0058D272 /* User.swift */; };
+		BB67EBF8233A60D00058D272 /* ChooseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EBF7233A60D00058D272 /* ChooseTableViewCell.swift */; };
+		BB67EBFA233AB4210058D272 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB67EBF9233AB4210058D272 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,12 @@
 		BB2EC88923355A1E0029C805 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BB2EC88C23355B720029C805 /* NewMeetViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewMeetViewController.storyboard; sourceTree = "<group>"; };
 		BB2EC88E23355E510029C805 /* NewMeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetViewController.swift; sourceTree = "<group>"; };
+		BB67EBEE23396FCF0058D272 /* RootWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWireFrame.swift; sourceTree = "<group>"; };
+		BB67EBF0233976A00058D272 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		BB67EBF3233A4B980058D272 /* Meet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meet.swift; sourceTree = "<group>"; };
+		BB67EBF5233A4BAD0058D272 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BB67EBF7233A60D00058D272 /* ChooseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTableViewCell.swift; sourceTree = "<group>"; };
+		BB67EBF9233AB4210058D272 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +110,7 @@
 		748F59A22270681B00B88B7D /* TimeDecisionMaker */ = {
 			isa = PBXGroup;
 			children = (
+				BB67EBF2233A4B730058D272 /* Model */,
 				748F59CC22706E9400B88B7D /* Appointments */,
 				748F59A32270681B00B88B7D /* AppDelegate.swift */,
 				748F59C62270687C00B88B7D /* RDTimeDecisionMaker.swift */,
@@ -119,10 +132,12 @@
 		748F59C42270685A00B88B7D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BB67EBED23396FB60058D272 /* WireFrame */,
 				BB2EC88B23355A320029C805 /* NewMeetViewController */,
 				BB2EC8862335569C0029C805 /* DetailViewController */,
 				BB2EC87F23353DBD0029C805 /* MeetViewController */,
 				BB2EC87A23353CA90029C805 /* ChooseViewController */,
+				BB67EBF9233AB4210058D272 /* LaunchScreen.storyboard */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -150,6 +165,7 @@
 			children = (
 				BB2EC87B23353CDE0029C805 /* ChooseViewController.storyboard */,
 				BB2EC87D23353D340029C805 /* ChooseViewController.swift */,
+				BB67EBF7233A60D00058D272 /* ChooseTableViewCell.swift */,
 			);
 			path = ChooseViewController;
 			sourceTree = "<group>";
@@ -180,6 +196,24 @@
 				BB2EC88E23355E510029C805 /* NewMeetViewController.swift */,
 			);
 			path = NewMeetViewController;
+			sourceTree = "<group>";
+		};
+		BB67EBED23396FB60058D272 /* WireFrame */ = {
+			isa = PBXGroup;
+			children = (
+				BB67EBEE23396FCF0058D272 /* RootWireFrame.swift */,
+				BB67EBF0233976A00058D272 /* NavigationViewController.swift */,
+			);
+			path = WireFrame;
+			sourceTree = "<group>";
+		};
+		BB67EBF2233A4B730058D272 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BB67EBF3233A4B980058D272 /* Meet.swift */,
+				BB67EBF5233A4BAD0058D272 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +298,7 @@
 			files = (
 				748F59CE22706EB300B88B7D /* B.ics in Resources */,
 				748F59AB2270681D00B88B7D /* Assets.xcassets in Resources */,
+				BB67EBFA233AB4210058D272 /* LaunchScreen.storyboard in Resources */,
 				BB2EC888233556BA0029C805 /* DetailViewController.storyboard in Resources */,
 				BB2EC88123353DF60029C805 /* MeetViewController.storyboard in Resources */,
 				BB2EC88D23355B720029C805 /* NewMeetViewController.storyboard in Resources */,
@@ -288,10 +323,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB67EBF8233A60D00058D272 /* ChooseTableViewCell.swift in Sources */,
 				BB2EC883233555640029C805 /* MeetViewController.swift in Sources */,
 				748F59C72270687C00B88B7D /* RDTimeDecisionMaker.swift in Sources */,
 				BB2EC87E23353D340029C805 /* ChooseViewController.swift in Sources */,
+				BB67EBF6233A4BAD0058D272 /* User.swift in Sources */,
+				BB67EBF1233976A00058D272 /* NavigationViewController.swift in Sources */,
+				BB67EBF4233A4B980058D272 /* Meet.swift in Sources */,
 				BB2EC88A23355A1E0029C805 /* DetailViewController.swift in Sources */,
+				BB67EBEF23396FCF0058D272 /* RootWireFrame.swift in Sources */,
 				748F59A42270681B00B88B7D /* AppDelegate.swift in Sources */,
 				BB2EC885233555760029C805 /* MeetCellViewController.swift in Sources */,
 				BB2EC88F23355E510029C805 /* NewMeetViewController.swift in Sources */,
