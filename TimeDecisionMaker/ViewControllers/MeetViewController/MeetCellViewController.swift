@@ -20,4 +20,9 @@ class MeetCellViewController: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBOutlet weak var StartMeetTime: UILabel!
+    @IBOutlet weak var MeetingWillBeFor: UILabel!
+    @IBOutlet weak var Title: UILabel!
+    @IBOutlet weak var Status: UILabel!
+    @IBOutlet weak var Recomendation: UILabel!
 }

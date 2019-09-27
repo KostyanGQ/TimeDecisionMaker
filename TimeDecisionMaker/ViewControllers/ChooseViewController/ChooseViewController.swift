@@ -29,6 +29,21 @@ class ChooseViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
+//         
+//            let path = Bundle.main.path(forResource: "A", ofType: "ics")
+//            let url = URL(fileURLWithPath: path ?? "")
+//            let dc = UIDocumentInteractionController(url: url)
+//            dc.delegate = self as? UIDocumentInteractionControllerDelegate
+//            dc.presentPreview(animated: true)
+//            print("dc, \(url)")
+//    
+//
+//        func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+//            return self
+//        }
+
     }
     
 

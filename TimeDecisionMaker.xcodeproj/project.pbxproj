@@ -31,6 +31,10 @@
 		BB67EBF6233A4BAD0058D272 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EBF5233A4BAD0058D272 /* User.swift */; };
 		BB67EBF8233A60D00058D272 /* ChooseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EBF7233A60D00058D272 /* ChooseTableViewCell.swift */; };
 		BB67EBFA233AB4210058D272 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB67EBF9233AB4210058D272 /* LaunchScreen.storyboard */; };
+		BB67EBFE233BE36E0058D272 /* RDFileServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EBFD233BE36E0058D272 /* RDFileServise.swift */; };
+		BB67EC00233BE48D0058D272 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EBFF233BE48D0058D272 /* String.swift */; };
+		BB67EC02233BE7940058D272 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EC01233BE7940058D272 /* Date.swift */; };
+		BB67EC04233BEC190058D272 /* MeetVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EC03233BEC190058D272 /* MeetVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		BB67EBF5233A4BAD0058D272 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BB67EBF7233A60D00058D272 /* ChooseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTableViewCell.swift; sourceTree = "<group>"; };
 		BB67EBF9233AB4210058D272 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BB67EBFD233BE36E0058D272 /* RDFileServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDFileServise.swift; sourceTree = "<group>"; };
+		BB67EBFF233BE48D0058D272 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		BB67EC01233BE7940058D272 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		BB67EC03233BEC190058D272 /* MeetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +118,12 @@
 		748F59A22270681B00B88B7D /* TimeDecisionMaker */ = {
 			isa = PBXGroup;
 			children = (
-				BB67EBF2233A4B730058D272 /* Model */,
-				748F59CC22706E9400B88B7D /* Appointments */,
 				748F59A32270681B00B88B7D /* AppDelegate.swift */,
 				748F59C62270687C00B88B7D /* RDTimeDecisionMaker.swift */,
+				BB67EBFC233BE3380058D272 /* Servise */,
+				748F59CC22706E9400B88B7D /* Appointments */,
+				BB67EBF2233A4B730058D272 /* Model */,
+				BB67EBFB233BD1B10058D272 /* ViewModel */,
 				748F59C42270685A00B88B7D /* ViewControllers */,
 				748F59C52270686400B88B7D /* Resources */,
 			);
@@ -214,6 +224,24 @@
 				BB67EBF5233A4BAD0058D272 /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BB67EBFB233BD1B10058D272 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BB67EC03233BEC190058D272 /* MeetVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BB67EBFC233BE3380058D272 /* Servise */ = {
+			isa = PBXGroup;
+			children = (
+				BB67EBFD233BE36E0058D272 /* RDFileServise.swift */,
+				BB67EC01233BE7940058D272 /* Date.swift */,
+				BB67EBFF233BE48D0058D272 /* String.swift */,
+			);
+			path = Servise;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,11 +352,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB67EBF8233A60D00058D272 /* ChooseTableViewCell.swift in Sources */,
+				BB67EC02233BE7940058D272 /* Date.swift in Sources */,
 				BB2EC883233555640029C805 /* MeetViewController.swift in Sources */,
 				748F59C72270687C00B88B7D /* RDTimeDecisionMaker.swift in Sources */,
 				BB2EC87E23353D340029C805 /* ChooseViewController.swift in Sources */,
+				BB67EC04233BEC190058D272 /* MeetVM.swift in Sources */,
+				BB67EC00233BE48D0058D272 /* String.swift in Sources */,
 				BB67EBF6233A4BAD0058D272 /* User.swift in Sources */,
 				BB67EBF1233976A00058D272 /* NavigationViewController.swift in Sources */,
+				BB67EBFE233BE36E0058D272 /* RDFileServise.swift in Sources */,
 				BB67EBF4233A4B980058D272 /* Meet.swift in Sources */,
 				BB2EC88A23355A1E0029C805 /* DetailViewController.swift in Sources */,
 				BB67EBEF23396FCF0058D272 /* RootWireFrame.swift in Sources */,
