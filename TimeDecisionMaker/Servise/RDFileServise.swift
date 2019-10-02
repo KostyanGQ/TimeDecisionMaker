@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import EventKit
 
 class RDFileServise: NSObject {
@@ -16,7 +17,7 @@ class RDFileServise: NSObject {
     private let formatter = DateFormatter()
     
 
-    public func fetchAppointment(resourceFile: String) -> [Meet] {
+    public func parthICSFile(resourceFile: String) -> [Meet] {
         meet.removeAll()
         let serviceMeet = Meet()
         guard let path = Bundle.main.path(forResource: resourceFile, ofType: "ics") else {
@@ -27,7 +28,6 @@ class RDFileServise: NSObject {
             var myStrings = try String(contentsOfFile: path, encoding: String.Encoding.utf8).components(separatedBy: .newlines)
             var state = false
             myStrings = myStrings.filter({ $0 != ""})
-            print("123,\(myStrings)")
             for element in myStrings {
                 
                 if element == "BEGIN:VEVENT" {
@@ -51,7 +51,6 @@ class RDFileServise: NSObject {
         } catch {
             print("Failed to read text")
         }
-        print("123,\(meet)")
         return meet
     }
         
@@ -114,49 +113,46 @@ class RDFileServise: NSObject {
             
         }
     
-    
-    func createNewCalendar(nameOfCalendar : String){
-        
-        let eventStore = EKEventStore()
-        let calendars = eventStore.calendarsForEntityType(EKEntityTypeEvent) as [EKCalendar]
-        var exists = false
-        for calendar in calendars {
-           if calendar.title == "newcal" {
-               exists = true
-           }
-        }
 
-        var err : NSError?
-        if exists==false {
-           let newCalendar = EKCalendar(forEntityType:EKEntityTypeEvent, eventStore:eventStore)
-           newCalendar.title="newcal"
-           newCalendar.source = eventStore.defaultCalendarForNewEvents.source
-           let ok = eventStore.saveCalendar(newCalendar, commit:true, error:&err)
-           print(ok)
-        }
-        
-    }
-    
-    
         
 
-//        public func getDaysByMonth(month: String, year: Int) -> [Date] {
+//    public func getDaysEvent(day : String, month: String, year: Int) -> Date {
 //            let calendar = Calendar.current
 //
-//            formatter.dateFormat = "yyyy-MMM"
+//            formatter.dateFormat = "yyyy-MMM-dd"
 //
 //            formatter.timeZone = TimeZone(identifier: "Europe/Kiev")
-//            let components = calendar.dateComponents([.year, .month], from: formatter.date(from: "\(year)-\(month)")!)
-//            let startOfMonth = calendar.date(from: components)!
-//            let numberOfDays = calendar.range(of: .day, in: .month, for: startOfMonth)!.upperBound
-//            let allDays = Array(0..<numberOfDays).map{ calendar.date(byAdding:.day, value: $0, to: startOfMonth)!}
-//            var dates = [Date]()
-//            for date in allDays {
-//                dates.append(date.convertToTimeZone(initTimeZone:TimeZone(abbreviation: "UTC")!, timeZone: TimeZone(identifier: "Europe/Kiev")!))
-//            }
-//            return dates
-//        }
+//            let components = calendar.dateComponents([.year, .month, .day], from: formatter.date(from: "\(year)-\(month)-\(day)")!)
+////            let startOfMonth = calendar.date(from: components)!
+////            let numberOfDays = calendar.range(of: .day, in: .month, for: startOfMonth)!.upperBound
+////            let allDays = Array(0..<numberOfDays).map{ calendar.date(byAdding:.day, value: $0, to: startOfMonth)!}
+//        let currentDate = Date()
 //
+//            currentDate.convertToTimeZone(initTimeZone: TimeZone(abbreviation: "UTC")!, timeZone: TimeZone(identifier: "Europe/Kiev")!)
+////            for date in allDays {
+////                dates.append(date.convertToTimeZone(initTimeZone:TimeZone(abbreviation: "UTC")!, timeZone: TimeZone(identifier: "Europe/Kiev")!))
+////            }
+//            return currentDate
+//        }
+    //MARK : Need chek
+    
+    func getEventDay(eventsList: [Meet], date : Date) -> [Meet]?{
+        
+        let allEventsForSelectedDay = [Meet]()
+        var events = [Meet]()
+        
+        let sortedEvents = allEventsForSelectedDay.sorted(by: { $0.dateInterval.start < $1.dateInterval.start})
+        
+        for event in sortedEvents {
+                
+            if DateInterval(start: date, duration: 86340).contains(event.dateInterval.start) {
+                    events.append(event)
+            }
+        }
+    
+        return events
+    }
+
         /// Method to perform days calculation from 1 to month's lenghth
         ///
         /// - Parameter month: selected month's name
