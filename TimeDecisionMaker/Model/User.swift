@@ -11,7 +11,7 @@ import Foundation
 class User : NSObject {
     
     public var name : String = ""
-    public var ICSFile : String = ""
+    public var ICSFile : String = "A"
     
     
     init(name: String, ICSFile: String) {
@@ -20,6 +20,6 @@ class User : NSObject {
     }
     override init() {
         self.name = ""
-        self.ICSFile = ""
+        self.ICSFile = "A"
     }
 }

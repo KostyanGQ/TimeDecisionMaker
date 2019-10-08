@@ -67,7 +67,7 @@ class ChooseViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectUser = user[indexPath.row]
-        
+        performSegue(withIdentifier: "MeetViewController", sender: nil)
     }
 
 

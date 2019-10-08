@@ -1,96 +1,121 @@
-////
-////  MeetViewController.swift
-////  TimeDecisionMaker
-////
-////  Created by Константин Овчаренко on 9/20/19.
-////
 //
-//import UIKit
+//  MeetViewController.swift
+//  TimeDecisionMaker
 //
-//class MeetViewController: UITableViewController {
+//  Created by Константин Овчаренко on 9/20/19.
 //
-//    
-//    
-//        
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        // Uncomment the following line to preserve selection between presentations
-//        // self.clearsSelectionOnViewWillAppear = false
-//
-//        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-//        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-//    }
-//
-//    // MARK: - Table view data source
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return user.count
-//    }
-//    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChooseTableViewCell
-//        cell.users.text = user[indexPath.row].name
-//        return cell
-//    }
-//    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        selectUser = user[indexPath.row]
-//        
-//    }
-//    /*
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-//
-//        // Configure the cell...
-//
-//        return cell
-//    }
-//    */
-//
-//    /*
-//    // Override to support conditional editing of the table view.
-//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        // Return false if you do not want the specified item to be editable.
-//        return true
-//    }
-//    */
-//
-//    /*
-//    // Override to support editing the table view.
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            // Delete the row from the data source
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }    
-//    }
-//    */
-//
-//    /*
-//    // Override to support rearranging the table view.
-//    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-//
-//    }
-//    */
-//
-//    /*
-//    // Override to support conditional rearranging of the table view.
-//    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-//        // Return false if you do not want the item to be re-orderable.
-//        return true
-//    }
-//    */
-//
-//    /*
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//    }
-//    */
-//
-//}
+
+import UIKit
+
+class MeetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    
+    var meet = Meet()
+    let user = User()
+    let service = RDFileServise()
+    
+    
+    
+    
+    
+    @IBOutlet weak var DateTextField: UITextField!
+    let datePicker = UIDatePicker()
+    
+        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        showDatePicker()
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+
+    // MARK: - Table view data source
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        
+        //MARK: Fix events
+        let calendar = Calendar.current
+        let dateComponents = DateComponents(calendar: calendar,
+                                            year: 2019,
+                                            month: 04,
+                                            day: 29,
+                                            hour: 3,
+                                            minute: 01)
+        
+        let date = NSCalendar.current.date(from: dateComponents)
+        let path = service.parthICSFile(resourceFile: user.ICSFile ?? "A")
+        let events = service.getEventDay(eventsList: path, date: date!)
+        
+        return events!.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MeetCellViewController
+        
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        let someDateTime = formatter.date(from: "2019/04/28")
+        
+        let calendar = Calendar.current
+        let dateComponents = DateComponents(calendar: calendar,
+                                            year: 2019,
+                                            month: 04,
+                                            day: 29,
+                                            hour: 3,
+                                            minute: 01)
+        
+        let date = NSCalendar.current.date(from: dateComponents)
+        
+   
+        
+        let path = service.parthICSFile(resourceFile: user.ICSFile ?? "A")
+        let events = service.getEventDay(eventsList: path, date: date!)
+        
+        meet = events![indexPath.row]
+
+        cell.Title.text = meet.summary
+        cell.StartMeetTime.text = "\(meet.dateStart!)"
+        return cell
+    }
+    
+    
+    //MARK: - DatePicker
+    
+     func showDatePicker(){
+           //Formate Date
+        datePicker.datePickerMode = .date
+
+          //ToolBar
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+
+        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+
+        DateTextField.inputAccessoryView = toolbar
+        DateTextField.inputView = datePicker
+
+    }
+    
+     @objc func donedatePicker(){
+
+      let formatter = DateFormatter()
+      formatter.dateFormat = "dd/MM/yyyy"
+      DateTextField.text = formatter.string(from: datePicker.date)
+      view.endEditing(true)
+    }
+
+    @objc func cancelDatePicker(){
+      view.endEditing(true)
+     }
+
+}

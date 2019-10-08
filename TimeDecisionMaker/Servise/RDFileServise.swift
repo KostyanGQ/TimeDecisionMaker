@@ -20,7 +20,7 @@ class RDFileServise: NSObject {
     public func parthICSFile(resourceFile: String) -> [Meet] {
         meet.removeAll()
         let serviceMeet = Meet()
-        guard let path = Bundle.main.path(forResource: resourceFile, ofType: "ics") else {
+        guard let path = Bundle.main.path(forResource: resourceFile, ofType: ".ics") else {
             print("Failed to load file from app bundle")
             return []
         }
@@ -44,7 +44,7 @@ class RDFileServise: NSObject {
                     getVariableByKey(key: getElementByKey(element: element).0!, keyValue: getElementByKey(element: element).1!, thisAppointment: serviceMeet)
                     
                     if serviceMeet.isReadyToAdd() {
-                        meet.append(Meet(summary: serviceMeet.summary, created: serviceMeet.created, UID: serviceMeet.UID,description: serviceMeet.descriptionAp, dateStart: serviceMeet.dateStart, dateEnd: serviceMeet.dateEnd, lastModified: serviceMeet.lastModified, location: serviceMeet.location, sequence: serviceMeet.sequence, stamp: serviceMeet.stamp))
+                        meet.append(Meet(summary: serviceMeet.summary, created: serviceMeet.created, UID: serviceMeet.UID, description: serviceMeet.title, dateStart: serviceMeet.dateStart, dateEnd: serviceMeet.dateEnd, lastModified: serviceMeet.lastModified, location: serviceMeet.location, sequence: serviceMeet.sequence, stamp: serviceMeet.stamp))
                     }
                 }
             }
@@ -89,7 +89,7 @@ class RDFileServise: NSObject {
                 print("status")
 //                thisAppointment.status = thisAppointment.statusTypeFromString(value: keyValue)
             case fileKeys[3]:
-                thisAppointment.descriptionAp = keyValue
+                thisAppointment.title = keyValue
             case fileKeys[4]:
                 thisAppointment.UID = keyValue
             case fileKeys[5]:
@@ -114,70 +114,120 @@ class RDFileServise: NSObject {
         }
     
 
-        
-
-//    public func getDaysEvent(day : String, month: String, year: Int) -> Date {
-//            let calendar = Calendar.current
-//
-//            formatter.dateFormat = "yyyy-MMM-dd"
-//
-//            formatter.timeZone = TimeZone(identifier: "Europe/Kiev")
-//            let components = calendar.dateComponents([.year, .month, .day], from: formatter.date(from: "\(year)-\(month)-\(day)")!)
-////            let startOfMonth = calendar.date(from: components)!
-////            let numberOfDays = calendar.range(of: .day, in: .month, for: startOfMonth)!.upperBound
-////            let allDays = Array(0..<numberOfDays).map{ calendar.date(byAdding:.day, value: $0, to: startOfMonth)!}
-//        let currentDate = Date()
-//
-//            currentDate.convertToTimeZone(initTimeZone: TimeZone(abbreviation: "UTC")!, timeZone: TimeZone(identifier: "Europe/Kiev")!)
-////            for date in allDays {
-////                dates.append(date.convertToTimeZone(initTimeZone:TimeZone(abbreviation: "UTC")!, timeZone: TimeZone(identifier: "Europe/Kiev")!))
-////            }
-//            return currentDate
-//        }
-    //MARK : Need chek
-    
     func getEventDay(eventsList: [Meet], date : Date) -> [Meet]?{
         
-        let allEventsForSelectedDay = [Meet]()
         var events = [Meet]()
         
-        let sortedEvents = allEventsForSelectedDay.sorted(by: { $0.dateInterval.start < $1.dateInterval.start})
+            print("345\(events)")
+            
         
+        let sortedEvents = eventsList.sorted(by: { $0.dateInterval.start < $1.dateInterval.start})
+
         for event in sortedEvents {
                 
             if DateInterval(start: date, duration: 86340).contains(event.dateInterval.start) {
+                    
+                if !events.contains(event){
                     events.append(event)
+                    print("somsing is ok")
+                }
+                
+            }else {
+                
+                print("somsing gone wrong")
+
             }
         }
-    
+        
+        print("123\(events)")
+        
         return events
     }
 
-        /// Method to perform days calculation from 1 to month's lenghth
-        ///
-        /// - Parameter month: selected month's name
-        /// - Returns: array of strings
-//        public func getDatesFromMonth(month: [Date]) -> [String] {
-//            var values = [String]()
-//            for i in 1...month.count {
-//                values.append("\(i)")
-//            }
-//            return values
-//        }
         
-        /// Method for checking if date interval is ready for manipulations
-        ///
-        /// - Parameters:
-        ///   - startDate: start date
-        ///   - endDate: end date
-        /// - Returns: returns true if dates are ready for date interval type
-//        public func dateViladation(startDate: Date, endDate: Date) -> Bool {
-//            guard startDate < endDate  else {
-//                return false
-//            }
-//            return true
-//        }
+    func saveEventChanges(event : Meet , resourceFile : String, resourseFile2 : String?) -> Bool {
+        
+        var newStrings = [String]()
+        formatter.dateFormat = "yyyyMMdd'T'HHmmss'Z'"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+               
+        guard let path = Bundle.main.path(forResource: resourceFile, ofType: "ics") else {
+                print("Failed to load file from app bundle")
+                return false
+            }
+        do {
+            var myStrings = try String(contentsOfFile: path, encoding: String.Encoding.utf8).components(separatedBy: .newlines)
+            var state = true
+            myStrings = myStrings.filter({ $0 != ""})
+               for i in 0..<myStrings.count {
+                   
+                   if myStrings[i] == "BEGIN:VEVENT" && myStrings[i+4] == "UID:\(event.UID)"{
+                       print("UID:\(event.UID)")
+                       newStrings.append(myStrings[i])
+                       newStrings.append("DTSTART:\(formatter.string(from: event.dateInterval.start))")
+                       newStrings.append("DTEND:\(formatter.string(from: event.dateInterval.end))")
+                       newStrings.append("DTSTAMP:\(formatter.string(from: event.stamp))")
+                       newStrings.append("UID:\(event.UID)")
+                       newStrings.append("CREATED:\(formatter.string(from: event.created))")
+                       newStrings.append("DESCRIPTION:\(event.title ?? "")")
+                       newStrings.append("LAST-MODIFIED:\(formatter.string(from: event.lastModified))")
+                       newStrings.append("LOCATION:\(event.location)")
+                       newStrings.append("SEQUENCE:\(event.sequence ?? 0)")
+//                       newStrings.append("STATUS:\(event.status.description)")
+                       newStrings.append("SUMMARY:\(event.summary)")
+//                       newStrings.append("TRANSP:\(event.transparency.description)")
+                       state = false
+                   } else if !state && myStrings[i] == "END:VEVENT" {
+                       state = true
+                   }
+                   
+                   if state {
+                       newStrings.append(myStrings[i])
+                   }
+               }
+               
+               let joined = newStrings.joined(separator: ("\n"))
+               do {
+                   try joined.write(toFile: path, atomically: true, encoding: String.Encoding.utf8)
+               } catch {
+                   // handle error
+               }
+
+           } catch {
+               print("Failed to read text")
+               return false
+           }
+           
+           return true
+       }
+    
+    func createNewEvent(organizationICS: String, invitedICS: String) -> Bool{
+        
+        var newStrings = [String]()
+        formatter.dateFormat = "yyyyMMdd'T'HHmmss'Z'"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+              
+        guard let pathOrganizationICS = Bundle.main.path(forResource: organizationICS, ofType: "ics") else {
+            print("Failed to load file from app bundle")
+            return false
+        }
+        guard let pathInvitedICS = Bundle.main.path(forResource: invitedICS, ofType: "ics") else {
+            print("Failed to load file from app bundle")
+            return false
+        }
+
+        
+
+
+
+
+
+
+
+
+        return true
     }
+}
 
 
 
