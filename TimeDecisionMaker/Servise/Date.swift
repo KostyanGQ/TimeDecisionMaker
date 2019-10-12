@@ -14,6 +14,14 @@ extension Date {
         return addingTimeInterval(delta)
     }
     
+    func hoursValueFromDateToString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm a"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        
+        return dateFormatter.string(from: self)
+    }
+
 
     
 //    func startOfDay() -> Date{

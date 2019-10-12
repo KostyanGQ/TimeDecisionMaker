@@ -117,10 +117,7 @@ class RDFileServise: NSObject {
     func getEventDay(eventsList: [Meet], date : Date) -> [Meet]?{
         
         var events = [Meet]()
-        
-            print("345\(events)")
             
-        
         let sortedEvents = eventsList.sorted(by: { $0.dateInterval.start < $1.dateInterval.start})
 
         for event in sortedEvents {
@@ -131,16 +128,11 @@ class RDFileServise: NSObject {
                     events.append(event)
                     print("somsing is ok")
                 }
-                
             }else {
-                
                 print("somsing gone wrong")
-
             }
         }
-        
-        print("123\(events)")
-        
+
         return events
     }
 
@@ -215,18 +207,18 @@ class RDFileServise: NSObject {
             print("Failed to load file from app bundle")
             return false
         }
-
-        
-
-
-
-
-
-
-
-
         return true
     }
+    
+    func chekTime(startTime : Date , endTime : Date) -> Bool{
+        
+        if startTime > endTime {
+            return false
+        } else {
+            return true
+        }
+    }
+    
 }
 
 
