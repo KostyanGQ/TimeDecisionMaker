@@ -12,7 +12,7 @@ import Foundation
     
     public var summary : String
     public var created : Date!
-//    public var status : Status!
+    public var status : Status!
     public var descriptionAp : String!
     public var UID : String
     public var dateInterval : DateInterval!
@@ -22,6 +22,7 @@ import Foundation
     public var lastModified : Date!
     public var location : String
     public var sequence : Int!
+    public var transparency : Transparency!
     
     private let dateFormatter = DateFormatter()
        
@@ -29,16 +30,16 @@ import Foundation
            self.summary = ""
            self.UID = ""
            self.created = Date()
-   //        self.status = Status.UNSET
+           self.status = Status.UNSET
            self.descriptionAp = ""
            self.location = ""
- //          self.transparency = Transparency.UNSET
+           self.transparency = Transparency.UNSET
        }
        
-       public init(summary: String, created: Date, UID: String, description: String, dateStart: Date, dateEnd: Date, lastModified: Date, location: String, sequence: Int, stamp: Date) {
+       public init(summary: String, created: Date, UID: String, status: Status, description: String, dateStart: Date, dateEnd: Date, lastModified: Date, location: String, sequence: Int, transparency : Transparency, stamp: Date) {
            self.summary = summary
            self.UID = UID
-   //        self.status = status
+           self.status = status
            self.descriptionAp = description
            self.created = created
            self.dateStart = dateStart
@@ -47,7 +48,7 @@ import Foundation
            self.lastModified = lastModified
            self.location = location
            self.sequence = sequence
-//           self.transparency = transparency
+           self.transparency = transparency
            self.stamp = stamp
        }
        
@@ -60,20 +61,31 @@ import Foundation
      public func makeModelEmptyForChecking() {
          self.summary = ""
          self.UID = ""
-//         self.status = Status.UNSET
-//         self.transparency = Transparency.UNSET
+         self.status = Status.UNSET
+         self.transparency = Transparency.UNSET
      }
     
-//    public func statusTypeFromString(value: String) -> Status {
-//        switch value {
-//        case "TENTATIVE":
-//            return Status.TENTATIVE
-//        case "CONFIRMED":
-//            return Status.CONFIRMED
-//        case "CANCELLED":
-//            return Status.CANCELLED
-//        default:
-//            return Status.TENTATIVE
-//        }
-//    }
+
+    enum Status : String {
+        
+        case TENTATIVE = "TENTATIVE"
+        case CONFIRMED = "CONFIRMED"
+        case CANCELLED = "CANCELLED"
+        case UNSET
+        
+        var description: String {
+            return self.rawValue
+        }
+    }
+    
+    enum Transparency : String {
+    case OPAQUE = "OPAQUE"
+    case TRANSPARENT = "TRANSPARENT"
+    case UNSET
+    
+    var description: String {
+        return self.rawValue
+    }
+   }
+    
 }
