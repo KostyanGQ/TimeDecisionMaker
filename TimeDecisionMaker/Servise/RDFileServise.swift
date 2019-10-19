@@ -15,44 +15,49 @@ class RDFileServise: NSObject {
     private var timezone: String!
     private var meet = [Meet]()
     private let formatter = DateFormatter()
-    
 
+    
     public func parthICSFile(resourceFile: String) -> [Meet] {
-        meet.removeAll()
-        let serviceMeet = Meet()
-        guard let path = Bundle.main.path(forResource: resourceFile, ofType: ".ics") else {
-            print("Failed to load file from app bundle")
-            return []
-        }
-        do {
-            var myStrings = try String(contentsOfFile: path, encoding: String.Encoding.utf8).components(separatedBy: .newlines)
+           meet.removeAll()
+           let serviceAppointment = Meet()
+           guard let path = Bundle.main.path(forResource: resourceFile, ofType: "ics") else {
+               print("Failed to load file from app bundle")
+               return []
+           }
+        
             var state = false
-            myStrings = myStrings.filter({ $0 != ""})
-            for element in myStrings {
-                
-                if element == "BEGIN:VEVENT" {
-                    state = true
-                } else if element == "END:VEVENT" {
-                    state = false
-                    serviceMeet.makeModelEmptyForChecking()
-                } else if element.contains("X-WR-TIMEZONE:") {
-                    timezone = element.matchingStrings(regex: "(?<=X-WR-TIMEZONE:).*").first?[0]
-                }
-                
-                if state && getElementByKey(element: element).1 != nil {
+
+           do {
+               var myStrings = try String(contentsOfFile: path, encoding: String.Encoding.utf8).components(separatedBy: .newlines)
+               myStrings = myStrings.filter({ $0 != ""})
+               for element in myStrings {
+                   print("element \(element)")
                     
-                    getVariableByKey(key: getElementByKey(element: element).0!, keyValue: getElementByKey(element: element).1!, thisAppointment: serviceMeet)
-                    
-                    if serviceMeet.isReadyToAdd() {
-                        meet.append(Meet(summary: serviceMeet.summary, created: serviceMeet.created, UID: serviceMeet.UID, description: serviceMeet.title, dateStart: serviceMeet.dateStart, dateEnd: serviceMeet.dateEnd, lastModified: serviceMeet.lastModified, location: serviceMeet.location, sequence: serviceMeet.sequence, stamp: serviceMeet.stamp))
-                    }
-                }
-            }
-        } catch {
-            print("Failed to read text")
-        }
-        return meet
-    }
+                   if element == "BEGIN:VEVENT" {
+                       state = true
+                   } else if element == "END:VEVENT" {
+                       state = false
+                       serviceAppointment.makeModelEmptyForChecking()
+                   } else if element.contains("X-WR-TIMEZONE:") {
+                       timezone = element.matchingStrings(regex: "(?<=X-WR-TIMEZONE:).*").first?[0]
+                   }
+                   
+                   if state && getElementByKey(element: element).1 != nil {
+                       
+                       getVariableByKey(key: getElementByKey(element: element).0!, keyValue: getElementByKey(element: element).1!, thisAppointment: serviceAppointment)
+                       
+                       if serviceAppointment.isReadyToAdd() {
+                           print("summury \(serviceAppointment.summary)")
+                           meet.append(Meet(summary: serviceAppointment.summary, created: serviceAppointment.created, UID: serviceAppointment.UID, status: serviceAppointment.status, description: serviceAppointment.descriptionAp, dateStart: serviceAppointment.dateStart, dateEnd: serviceAppointment.dateEnd, lastModified: serviceAppointment.lastModified, location: serviceAppointment.location, sequence: serviceAppointment.sequence, transparency: serviceAppointment.transparency, stamp: serviceAppointment.stamp))
+                       }
+                   }
+               }
+           } catch {
+               print("Failed to read text")
+           }
+           print("123,\(meet)")
+           return meet
+       }
         
         
         private func getElementByKey(element: String) -> (String?, String?) {
@@ -89,7 +94,7 @@ class RDFileServise: NSObject {
                 print("status")
 //                thisAppointment.status = thisAppointment.statusTypeFromString(value: keyValue)
             case fileKeys[3]:
-                thisAppointment.title = keyValue
+                thisAppointment.descriptionAp = keyValue
             case fileKeys[4]:
                 thisAppointment.UID = keyValue
             case fileKeys[5]:
@@ -117,8 +122,18 @@ class RDFileServise: NSObject {
     func getEventDay(eventsList: [Meet], date : Date) -> [Meet]?{
         
         var events = [Meet]()
+        
+        
+        for event in eventsList {
+             print("eventList  \(event.summary)")
+         }
             
+        
         let sortedEvents = eventsList.sorted(by: { $0.dateInterval.start < $1.dateInterval.start})
+        
+        for event in sortedEvents {
+               print("eventSortedEvents \(event.summary)")
+           }
 
         for event in sortedEvents {
                 
@@ -126,7 +141,7 @@ class RDFileServise: NSObject {
                     
                 if !events.contains(event){
                     events.append(event)
-                    print("somsing is ok")
+                    print("somsing is ok \(event.summary)")
                 }
             }else {
                 print("somsing gone wrong")
@@ -154,14 +169,13 @@ class RDFileServise: NSObject {
                for i in 0..<myStrings.count {
                    
                    if myStrings[i] == "BEGIN:VEVENT" && myStrings[i+4] == "UID:\(event.UID)"{
-                       print("UID:\(event.UID)")
                        newStrings.append(myStrings[i])
                        newStrings.append("DTSTART:\(formatter.string(from: event.dateInterval.start))")
                        newStrings.append("DTEND:\(formatter.string(from: event.dateInterval.end))")
                        newStrings.append("DTSTAMP:\(formatter.string(from: event.stamp))")
                        newStrings.append("UID:\(event.UID)")
                        newStrings.append("CREATED:\(formatter.string(from: event.created))")
-                       newStrings.append("DESCRIPTION:\(event.title ?? "")")
+                       newStrings.append("DESCRIPTION:\(event.descriptionAp ?? "")")
                        newStrings.append("LAST-MODIFIED:\(formatter.string(from: event.lastModified))")
                        newStrings.append("LOCATION:\(event.location)")
                        newStrings.append("SEQUENCE:\(event.sequence ?? 0)")
@@ -192,24 +206,24 @@ class RDFileServise: NSObject {
            
            return true
        }
-    
-    func createNewEvent(organizationICS: String, invitedICS: String) -> Bool{
-        
-        var newStrings = [String]()
-        formatter.dateFormat = "yyyyMMdd'T'HHmmss'Z'"
-        formatter.timeZone = TimeZone(abbreviation: "UTC")
-              
-        guard let pathOrganizationICS = Bundle.main.path(forResource: organizationICS, ofType: "ics") else {
-            print("Failed to load file from app bundle")
-            return false
-        }
-        guard let pathInvitedICS = Bundle.main.path(forResource: invitedICS, ofType: "ics") else {
-            print("Failed to load file from app bundle")
-            return false
-        }
-        return true
-    }
-    
+//
+//    func createNewEvent(organizationICS: String, invitedICS: String) -> Bool{
+//
+//        var newStrings = [String]()
+//        formatter.dateFormat = "yyyyMMdd'T'HHmmss'Z'"
+//        formatter.timeZone = TimeZone(abbreviation: "UTC")
+//
+//        guard let pathOrganizationICS = Bundle.main.path(forResource: organizationICS, ofType: "ics") else {
+//            print("Failed to load file from app bundle")
+//            return false
+//        }
+//        guard let pathInvitedICS = Bundle.main.path(forResource: invitedICS, ofType: "ics") else {
+//            print("Failed to load file from app bundle")
+//            return false
+//        }
+//        return true
+//    }
+//
     func chekTime(startTime : Date , endTime : Date) -> Bool{
         
         if startTime > endTime {
@@ -218,6 +232,60 @@ class RDFileServise: NSObject {
             return true
         }
     }
+    
+    func createMeet(meet : Meet, filePathOrganizer : String, filePathAttend : String?) -> Bool {
+        
+        
+        var newStrings = [String]()
+        
+        
+        guard let pathOrganizer = Bundle.main.path(forResource: filePathOrganizer, ofType: "ics") else {
+            print("Failed to load file from app bundle")
+            return false
+        }
+        guard let pathAttend = Bundle.main.path(forResource: filePathAttend, ofType: "ics") else {
+            print("Failed to load file from app bundle")
+            return false
+        }
+        
+       do {
+            var myStrings = try! String(contentsOfFile: pathAttend, encoding: String.Encoding.utf8).components(separatedBy: .newlines)
+            var state = true
+            myStrings = myStrings.filter({ $0 != ""})
+            for i in 0..<myStrings.count {
+
+                    if myStrings[i] == "BEGIN:VEVENT" && myStrings[i+4] == "UID:\(meet.UID)"{
+                    print("UID:\(meet.UID)")
+                    newStrings.append(myStrings[i])
+                    newStrings.append("DTSTART:\(formatter.string(from: meet.dateInterval.start))")
+                    newStrings.append("DTEND:\(formatter.string(from: meet.dateInterval.end))")
+                    newStrings.append("DTSTAMP:\(formatter.string(from: meet.stamp))")
+                    newStrings.append("UID:\(meet.UID)")
+                    newStrings.append("CREATED:\(formatter.string(from: meet.created))")
+                    newStrings.append("DESCRIPTION:\(meet.descriptionAp ?? "")")
+                    newStrings.append("LAST-MODIFIED:\(formatter.string(from: meet.lastModified))")
+                    newStrings.append("LOCATION:\(meet.location)")
+                    newStrings.append("SEQUENCE:\(meet.sequence ?? 0)")
+  //                  newStrings.append("STATUS:\(meet.status.description)")
+                    newStrings.append("SUMMARY:\(meet.summary)")
+//                    newStrings.append("TRANSP:\(meet.transparency.description)")
+                    state = false
+                } else if !state && myStrings[i] == "END:VEVENT" {
+                    state = true
+                }
+            
+                if state {
+                    newStrings.append(myStrings[i])
+                }
+            }
+        
+        // добавить проверку на место куда это добавлять и встраивать между событиями 
+        }
+        
+        
+        return true
+    }
+    
     
 }
 

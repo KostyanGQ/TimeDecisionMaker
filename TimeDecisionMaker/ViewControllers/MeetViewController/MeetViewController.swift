@@ -11,9 +11,11 @@ class MeetViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     var meet = Meet()
+    var events : [Meet]? = nil
     let user = User()
     let service = RDFileServise()
     let dataPiker = ChooseDayView()
+    var selectEvent  = Meet()
     
     
     private var date : Date? = nil
@@ -28,9 +30,28 @@ class MeetViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+        
+//        let calendar = Calendar.current
+//        let dateComponents = DateComponents(calendar: calendar,
+//                                            year: 2019,
+//                                            month: 04,
+//                                            day: 29,
+//                                            hour: 3,
+//                                            minute: 01)
+//        
+//        var date = NSCalendar.current.date(from: dateComponents)
+        
         date = dataPiker.showDatePicker(dateText: DateTextField)
+
+        let path = service.parthICSFile(resourceFile: user.ICSFile )
+        print("userFile \(user.ICSFile)")
+        self.events = service.getEventDay(eventsList: path, date: date!)!
+        for event in self.events! {
+            print("meets \(event.summary)")
+        }
+        
+
+       
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateTable),
@@ -51,22 +72,13 @@ class MeetViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
         //MARK: Fix events
-        let calendar = Calendar.current
-        let dateComponents = DateComponents(calendar: calendar,
-                                            year: 2019,
-                                            month: 04,
-                                            day: 29,
-                                            hour: 3,
-                                            minute: 01)
-        
-        let date = NSCalendar.current.date(from: dateComponents)
-        let path = service.parthICSFile(resourceFile: user.ICSFile )
-        let events = service.getEventDay(eventsList: path, date: date!)
+
+
        
         if events == nil {
             return 1
         } else {
-        return events!.count
+            return self.events!.count
         }
     }
     
@@ -74,19 +86,36 @@ class MeetViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MeetCellViewController
         
         let path = service.parthICSFile(resourceFile: user.ICSFile )
-        let events = service.getEventDay(eventsList: path, date: self.date!)
+             print("userFile \(user.ICSFile)")
         
-        if events![indexPath.row] == nil {
+        if self.events![indexPath.row] == nil {
             cell.Title.text = "You have no event today"
         } else {
         meet = events![indexPath.row]
+            print("eventTO, \(meet)")
         cell.Title.text = meet.summary
-        cell.StartMeetTime.text = "\(meet.dateStart!)"
+        cell.StartMeetTime.text = "\(meet.dateInterval.start.hoursValueFromDateToString())"
+            print("dateIntervalStart \(meet.dateInterval.start.hoursValueFromDateToString())")
         }
-
-            
+ 
         return cell
     }
+    
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let path = service.parthICSFile(resourceFile: user.ICSFile )
+        let events = service.getEventDay(eventsList: path, date: self.date!)
+        meet = events![indexPath.row]
+        print("eventTO, \(meet)")
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "MeetViewController", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        self.present(nextViewController, animated:true, completion:nil)
+         
+    }
+    
+
+    
     
     @objc func updateTable(){
         

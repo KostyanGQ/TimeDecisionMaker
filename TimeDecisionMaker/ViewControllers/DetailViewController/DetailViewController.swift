@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    let event = Meet()
+    let meet = Meet()
     let user = User()
     let service = RDFileServise()
     
@@ -43,11 +43,11 @@ class DetailViewController: UIViewController {
     
     func viewVC() {
         
-        self.TitleLabel.text = event.summary
-        self.startMeetinTextField.text = event.dateInterval.start.hoursValueFromDateToString()
-        self.endMeetingTextField.text = event.dateInterval.end.hoursValueFromDateToString()
-        self.LastChangeDate.text = event.lastModified.hoursValueFromDateToString()
-        self.CreateMeetingDate.text = event.created.hoursValueFromDateToString()
+        self.TitleLabel.text = meet.summary
+        self.startMeetinTextField.text = meet.dateInterval.start.hoursValueFromDateToString()
+        self.endMeetingTextField.text = meet.dateInterval.end.hoursValueFromDateToString()
+        self.LastChangeDate.text = meet.lastModified.hoursValueFromDateToString()
+        self.CreateMeetingDate.text = meet.created.hoursValueFromDateToString()
  //       self.StatusLabel.text = event.status
         
         if self.securetyLabel.isHidden == true {
@@ -64,7 +64,7 @@ class DetailViewController: UIViewController {
         
         if service.chekTime(startTime: (startMeetinTextField.text?.convertStringToDate(timezone: timeZone, format: format))!, endTime: (endMeetingTextField.text?.convertStringToDate(timezone: timeZone, format: format))!) {
             
-            if service.saveEventChanges(event: event, resourceFile: user.ICSFile, resourseFile2: nil) {
+            if service.saveEventChanges(event: meet, resourceFile: user.ICSFile, resourseFile2: nil) {
                 print("Your meet were resaved")
             } else{
                 print("Somesing gone wrong")

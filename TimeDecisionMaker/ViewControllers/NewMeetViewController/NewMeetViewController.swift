@@ -9,12 +9,58 @@ import UIKit
 
 class NewMeetViewController: UIViewController {
 
+
+    let meet = Meet()
+    let user = User()
+    let service = RDFileServise()
+    let timeZone = "Europe/Kiev"
+    let format = "dd/MM/yyyy HH:mm"
+    
+    @IBOutlet weak var TitleTextView: UITextView!
+    @IBOutlet weak var StartTimeTextFIeld: UITextField!
+    @IBOutlet weak var EndTimeTextField: UITextField!
+    @IBOutlet weak var EmailTextEdin: UITextField!
+    @IBOutlet weak var ChooseICSFileTextField: UITextField!
+    @IBOutlet weak var RecomendationTableView: UITableView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        viewVC()
+
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+    }
+    
+    
+    func viewVC(){
+        self.meet.descriptionAp = TitleTextView.text
+        self.meet.dateInterval.start = StartTimeTextFIeld.text!.convertStringToDate(timezone: timeZone, format: format)
+        self.meet.dateInterval.end = EndTimeTextField.text!.convertStringToDate(timezone: timeZone, format: format)
+       
+        if ChooseICSFileTextField != nil {
+            self.meet.UID = ChooseICSFileTextField.text!
+        }else {
+            self.meet.UID = EmailTextEdin.text!
+        }
+        typeOfUID()
+        
+        
+    }
+    
+    
+    func typeOfUID() {
+        if EmailTextEdin != nil {
+            ChooseICSFileTextField.isHidden = true
+        }
+        if ChooseICSFileTextField != nil{
+            EmailTextEdin.isHidden = true
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -25,5 +71,4 @@ class NewMeetViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

@@ -10,6 +10,11 @@ import Foundation
 class RDTimeDecisionMaker: NSObject {
     /// Main method to perform date interval calculation
     ///
+    ///
+    ///
+
+    let service = RDFileServise()
+    
     /// - Parameters:
     ///   - organizerICSPath: path to personA file with events
     ///   - attendeeICSPath: path to personB file with events
@@ -18,6 +23,13 @@ class RDTimeDecisionMaker: NSObject {
     func suggestAppointments(organizerICS:String,
                              attendeeICS:String,
                              duration:TimeInterval) -> [DateInterval] {
+        
+        
+        
         return []
     }
+    
+    
+    
+    
 }

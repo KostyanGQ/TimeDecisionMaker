@@ -11,7 +11,7 @@
         <!--Meet View Controller-->
         <scene sceneID="SCO-pV-vcE">
             <objects>
-                <viewController id="vVC-Rh-ibi" customClass="MeetViewController" customModule="TimeDecisionMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MeetViewController" id="vVC-Rh-ibi" customClass="MeetViewController" customModule="TimeDecisionMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g5Q-VB-7UC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -140,6 +140,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saG-cY-X9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-691.304347826087" y="-50.223214285714285"/>
+        </scene>
+        <!--DetailViewController-->
+        <scene sceneID="cCo-QE-h4v">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="DetailViewController" storyboardName="DetailViewController" id="yoG-O1-Kzd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pMW-ix-n23" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="193" y="-74"/>
         </scene>
     </scenes>
 </document>

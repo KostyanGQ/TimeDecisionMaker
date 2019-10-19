@@ -67,8 +67,12 @@ class ChooseViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectUser = user[indexPath.row]
-        performSegue(withIdentifier: "MeetViewController", sender: nil)
+        print("users \(user[indexPath.row].name)")
+        let storyBoard : UIStoryboard = UIStoryboard(name: "ChooseViewController", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MeetViewController") as! MeetViewController
+        self.present(nextViewController, animated:true, completion:nil)
     }
+    
 
 
 }
