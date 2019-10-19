@@ -14,7 +14,7 @@ class ChooseDayView : UIView, UITextFieldDelegate {
     let datePicker = UIDatePicker()
     let formatter = DateFormatter()
     
-public func showDatePicker(dateText : UITextField) -> Date{
+    public func showDatePicker(dateText : UITextField) -> Date{
     
         self.date = dateText
         formatter.dateFormat = "dd/MM/yyyy"
@@ -43,11 +43,13 @@ public func showDatePicker(dateText : UITextField) -> Date{
     formatter.dateFormat = "dd/MM/yyyy"
     
     
-    date?.text = formatter.string(from: datePicker.date)
-    UIApplication.shared.keyWindow?.rootViewController?.view.endEditing(true)
+
     
     let notificationName = NSNotification.Name.init("ChooseDayView_UpdateAfterClouse")
     NotificationCenter.default.post(name: notificationName, object: nil)
+    
+    date?.text = formatter.string(from: datePicker.date)
+    UIApplication.shared.keyWindow?.rootViewController?.view.endEditing(true)
     
  }    
     
