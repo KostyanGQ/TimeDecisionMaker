@@ -36,6 +36,12 @@
 		BB67EC02233BE7940058D272 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EC01233BE7940058D272 /* Date.swift */; };
 		BB67EC04233BEC190058D272 /* MeetVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB67EC03233BEC190058D272 /* MeetVM.swift */; };
 		BB7D9A88234A692B00517301 /* ChooseDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D9A87234A692B00517301 /* ChooseDayView.swift */; };
+		BB7D9A9A235A972C00517301 /* ICSTimeZoneParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D9A94235A972C00517301 /* ICSTimeZoneParser.swift */; };
+		BB7D9A9B235A972C00517301 /* SwiftCal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D9A95235A972C00517301 /* SwiftCal.swift */; };
+		BB7D9A9C235A972C00517301 /* ICSEventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D9A96235A972C00517301 /* ICSEventParser.swift */; };
+		BB7D9A9D235A972C00517301 /* ICS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D9A97235A972C00517301 /* ICS.swift */; };
+		BB7D9A9E235A972C00517301 /* CalendarTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D9A98235A972C00517301 /* CalendarTools.swift */; };
+		BB7D9A9F235A972C00517301 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7D9A99235A972C00517301 /* CalendarEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +85,12 @@
 		BB67EC01233BE7940058D272 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		BB67EC03233BEC190058D272 /* MeetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetVM.swift; sourceTree = "<group>"; };
 		BB7D9A87234A692B00517301 /* ChooseDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDayView.swift; sourceTree = "<group>"; };
+		BB7D9A94235A972C00517301 /* ICSTimeZoneParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICSTimeZoneParser.swift; path = TimeDecisionMaker/SwiftCal/ICSTimeZoneParser.swift; sourceTree = SOURCE_ROOT; };
+		BB7D9A95235A972C00517301 /* SwiftCal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftCal.swift; path = TimeDecisionMaker/SwiftCal/SwiftCal.swift; sourceTree = SOURCE_ROOT; };
+		BB7D9A96235A972C00517301 /* ICSEventParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICSEventParser.swift; path = TimeDecisionMaker/SwiftCal/ICSEventParser.swift; sourceTree = SOURCE_ROOT; };
+		BB7D9A97235A972C00517301 /* ICS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICS.swift; path = TimeDecisionMaker/SwiftCal/ICS.swift; sourceTree = SOURCE_ROOT; };
+		BB7D9A98235A972C00517301 /* CalendarTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarTools.swift; path = TimeDecisionMaker/SwiftCal/CalendarTools.swift; sourceTree = SOURCE_ROOT; };
+		BB7D9A99235A972C00517301 /* CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarEvent.swift; path = TimeDecisionMaker/SwiftCal/CalendarEvent.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +114,7 @@
 		748F59972270681B00B88B7D = {
 			isa = PBXGroup;
 			children = (
+				BB7D9A93235A96E500517301 /* SwiftCal */,
 				748F59A22270681B00B88B7D /* TimeDecisionMaker */,
 				748F59B72270681D00B88B7D /* TimeDecisionMakerTests */,
 				748F59A12270681B00B88B7D /* Products */,
@@ -255,6 +268,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BB7D9A93235A96E500517301 /* SwiftCal */ = {
+			isa = PBXGroup;
+			children = (
+				BB7D9A99235A972C00517301 /* CalendarEvent.swift */,
+				BB7D9A98235A972C00517301 /* CalendarTools.swift */,
+				BB7D9A97235A972C00517301 /* ICS.swift */,
+				BB7D9A96235A972C00517301 /* ICSEventParser.swift */,
+				BB7D9A94235A972C00517301 /* ICSTimeZoneParser.swift */,
+				BB7D9A95235A972C00517301 /* SwiftCal.swift */,
+			);
+			path = SwiftCal;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -363,20 +389,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB67EBF8233A60D00058D272 /* ChooseTableViewCell.swift in Sources */,
+				BB7D9A9F235A972C00517301 /* CalendarEvent.swift in Sources */,
 				BB67EC02233BE7940058D272 /* Date.swift in Sources */,
 				BB2EC883233555640029C805 /* MeetViewController.swift in Sources */,
 				748F59C72270687C00B88B7D /* RDTimeDecisionMaker.swift in Sources */,
+				BB7D9A9D235A972C00517301 /* ICS.swift in Sources */,
 				BB2EC87E23353D340029C805 /* ChooseViewController.swift in Sources */,
+				BB7D9A9A235A972C00517301 /* ICSTimeZoneParser.swift in Sources */,
 				BB67EC04233BEC190058D272 /* MeetVM.swift in Sources */,
 				BB67EC00233BE48D0058D272 /* String.swift in Sources */,
 				BB67EBF6233A4BAD0058D272 /* User.swift in Sources */,
 				BB67EBF1233976A00058D272 /* NavigationViewController.swift in Sources */,
+				BB7D9A9B235A972C00517301 /* SwiftCal.swift in Sources */,
 				BB67EBFE233BE36E0058D272 /* RDFileServise.swift in Sources */,
 				BB7D9A88234A692B00517301 /* ChooseDayView.swift in Sources */,
 				BB67EBF4233A4B980058D272 /* Meet.swift in Sources */,
 				BB2EC88A23355A1E0029C805 /* DetailViewController.swift in Sources */,
 				BB67EBEF23396FCF0058D272 /* RootWireFrame.swift in Sources */,
 				748F59A42270681B00B88B7D /* AppDelegate.swift in Sources */,
+				BB7D9A9C235A972C00517301 /* ICSEventParser.swift in Sources */,
+				BB7D9A9E235A972C00517301 /* CalendarTools.swift in Sources */,
 				BB2EC885233555760029C805 /* MeetCellViewController.swift in Sources */,
 				BB2EC88F23355E510029C805 /* NewMeetViewController.swift in Sources */,
 			);
